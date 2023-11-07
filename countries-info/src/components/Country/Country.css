@@ -1,0 +1,16 @@
+.country{
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 10px;
+}
+.country img{
+    width: 100%;
+    height: 200px;
+}
+.info{
+    display: flex;
+    justify-content: space-around;
+}
+.country button{
+    padding: 5px 20px;
+}
