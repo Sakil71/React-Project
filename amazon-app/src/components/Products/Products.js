@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../Product/Product';
-import Items from '../../Items/Items';
-import { getDataFromLocalStorage, setDataInLocal } from '../../utilities/localStorage';
+import Items from '../Items/Items';
+import { deleteAll, getDataFromLocalStorage, setDataInLocal } from '../../utilities/localStorage';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -41,6 +41,11 @@ const Products = () => {
         setCart(newCart)
         setDataInLocal(selectedProduct.id)        
     }
+
+    const clearCart = () =>{
+        setCart([]);
+        deleteAll();
+    }
     
 
     return (
@@ -56,7 +61,7 @@ const Products = () => {
             </div>
             
             <div className='w-[20%] px-4 bg-slate-800 text-white rounded pt-2'> 
-                <Items cart={cart}></Items>
+                <Items cart={cart} clearCart={clearCart}></Items>
             </div>
         </div>
     );

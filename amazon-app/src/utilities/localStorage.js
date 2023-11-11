@@ -20,5 +20,20 @@ const getDataFromLocalStorage = () =>{
     return shoppingCart;
 }
 
+const removeFromDb = id =>{
+    const prevData = localStorage.getItem('items');
+    if(prevData){
+        const items = JSON.parse(prevData);
+        if(id in items){
+            delete items[id];
+            localStorage.setItem('items', JSON.stringify(items));
+        }
+    }
+}
 
-export {setDataInLocal, getDataFromLocalStorage};
+const deleteAll = () =>{
+    localStorage.removeItem('items');
+}
+
+
+export {setDataInLocal, getDataFromLocalStorage, removeFromDb, deleteAll};

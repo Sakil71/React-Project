@@ -1,12 +1,11 @@
+import { RouterProvider } from 'react-router-dom';
 import './App.css';
-import Header from './components/Header/Header';
-import Products from './components/Products/Products';
+import { router } from './Routes/Routes';
 
 function App() {
   return (
     <div className="App font-sans">
-      <Header></Header>
-      <Products></Products>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }
