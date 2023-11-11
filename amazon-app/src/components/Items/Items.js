@@ -12,7 +12,7 @@ const Items = ({ cart, clearCart }) => {
     const grnadTotal = parseFloat((totalPrice + shippingCharges + tax).toFixed(2));
 
     return (
-        <div className='sticky top-16'>
+        <div className='md:sticky top-16'>
             <h1 className='text-2xl font-medium mb-4'>Order Summary</h1>
             <p className='text-xl opacity-80 font-medium mb-4'>Items Added: {quantity}</p>
             <p className='text-xl opacity-80 font-medium mb-4'>Total Price: ${totalPrice}</p>

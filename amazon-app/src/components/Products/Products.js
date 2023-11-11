@@ -49,7 +49,7 @@ const Products = () => {
     
 
     return (
-        <div className='flex justify-between gap-5 w-[95%] mx-auto my-10'>
+        <div className='md:flex justify-between gap-5 w-[95%] mx-auto my-10'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-[80%]'>
             {
                 products.map(product => <Product 
@@ -60,7 +60,7 @@ const Products = () => {
             }
             </div>
             
-            <div className='w-[20%] px-4 bg-slate-800 text-white rounded pt-2'> 
+            <div className='md:w-[20%] px-4 bg-slate-800 text-white rounded pt-2'> 
                 <Items cart={cart} clearCart={clearCart}></Items>
             </div>
         </div>

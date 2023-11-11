@@ -47,9 +47,12 @@ const Order = () => {
                     }
                 </div>
             </div>
-            <div className='bg-slate-800 text-white rounded p-2 w-1/4'>
-                <Items cart={cart} clearCart={clearCart}></Items>
-            </div>
+            {
+                cart.length > 0 &&
+                <div className='bg-slate-800 text-white rounded p-2 md:w-1/4'>
+                    <Items cart={cart} clearCart={clearCart}></Items>
+                </div>
+            }
         </div>
     );
 };
