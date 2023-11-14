@@ -5,7 +5,7 @@ const Quiz = ({ quizTopic }) => {
     const { id, logo, name, total } = quizTopic;
 
     return (
-        <div className='shadow-lg rounded p-5 bg-slate-400 text-white duration-1000 hover:bg-red-300'>
+        <div className='shadow-lg rounded p-5 bg-slate-400 text-white duration-1000 hover:bg-red-300 mb-5'>
             <div className='relative'>
                 <img src={logo} alt="" />
                 <p className='absolute top-[-20px] left-0 text-white font-medium'>Total Quiz: {total}</p>
