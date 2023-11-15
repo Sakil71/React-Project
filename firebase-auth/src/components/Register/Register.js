@@ -92,13 +92,17 @@ const Register = () => {
 
 
     return (
-        <div className={`w-[96%] md:w-10/12 mx-auto ${mood ? 'text-white' : ''}`}>
+        <div className={`w-[96%] md:w-10/12 mx-auto text-center ${mood ? 'text-white' : ''}`}>
 
             <div>
                 {
                     user.uid ? //if Condition
                         <>
                             <h1 className='font-medium text-green-800 mt-5'>Congrats!! Your registration successfull.</h1>
+                            <div className='gap-4 items-center justify-center flex mt-5'>
+                                <p className=''>Go to </p>
+                                <Link className='hidden md:block text-xs w-32 border text-white bg-blue-700 px-4 py-2 rounded' to='/'>Home</Link>
+                            </div>
 
                         </>
 
@@ -121,8 +125,7 @@ const Register = () => {
                                 <p className='text-left mt-4 font-medium'>Already have an account? Please <Link className='text-blue-600 hover:text-blue-700' to='/signIn'>Sign In</Link></p>
                             </form>
 
-                            <hr
-                                class="my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100" />
+                            <hr className="my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100" />
 
                             <div className='text-white'>
 

@@ -9,9 +9,13 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Main></Main>,
         children: [
-            {path: '/', element: <Home></Home>},
-            {path: 'register', element: <Register></Register>},
-            {path: 'signIn', element: <SignIn></SignIn>},
+            {
+                path: '/',
+                loader: () => fetch('https://api.slingacademy.com/v1/sample-data/photos'),
+                element: <Home></Home>
+            },
+            { path: 'register', element: <Register></Register> },
+            { path: 'signIn', element: <SignIn></SignIn> },
         ]
     }
 ])

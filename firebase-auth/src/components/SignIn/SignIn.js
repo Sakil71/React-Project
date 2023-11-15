@@ -66,7 +66,7 @@ const SignIn = () => {
             })
     }
     return (
-        <div className='w-[96%] md:w-10/12 mx-auto'>
+        <div className='w-[96%] md:w-10/12 text-center mx-auto'>
             {
                 user.uid ?
                 <h1 className='font-medium text-green-800 mt-5'>Congrats!! Sign In successfull.</h1>

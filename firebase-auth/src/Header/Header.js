@@ -35,12 +35,12 @@ const Header = () => {
                     <h1 className='text-xl font-medium'>My Firebase App</h1>
 
                     <div className='flex items-center gap-4'>
-                        <Link className='hidden md:block text-xs bg-blue-700 px-4 py-2 rounded' to='/'>Home</Link>
+                        <Link className='hidden md:block text-xs border hover:bg-blue-700 px-4 py-2 rounded' to='/'>Home</Link>
 
                         {
                             !user.uid ?
 
-                                <Link to='/register' className='text-xs bg-blue-700 px-4 py-2 rounded' title='Register'>Register</Link>
+                                <Link to='/register' className='text-xs border hover:bg-blue-700 px-4 py-2 rounded' title='Register'>Register</Link>
 
                                 :
 

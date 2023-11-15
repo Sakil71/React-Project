@@ -1,19 +1,26 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../App';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import SubHome from '../SubHome/SubHome';
 
 const Home = () => {
     const { user, mood } = useContext(UserContext);
+    const albums = useLoaderData();
+
     return (
         <div className={`mx-auto ${mood ? 'text-white' : ''}`}>
             <main>
 
                 {
                     user.uid ?
-                        <div className='w-3/4 mx-auto my-10 text-left'>
-                            <img className=' mb-4 w-96' src={user.photoURL} alt="" />
-                            <h1 className='text-xl font-medium opacity-90'>{user.displayName}</h1>
-                            <p>{user.email}</p>
+                        <div className='my-5 w-[96%] mx-auto'>
+                            <h1 className='text-xl font-bold mb-5'>News Feed</h1>
+                            {
+                                albums.photos.map(album => <SubHome
+                                    key={album.id}
+                                    album={album}>
+                                </SubHome>)
+                            }
                         </div>
                         :
                         <>

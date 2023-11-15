@@ -12,7 +12,8 @@ function App() {
   const userValue = {user, setUser, mood, setMood}
   return (
     <UserContext.Provider value={userValue}>
-      <div className={`App ${mood ? 'bg-slate-800 text-white min-h-screen' : ''}`}>
+
+      <div className={`relative ${mood ? 'bg-slate-800 text-white min-h-screen' : ''}`}>
         <RouterProvider router={router}></RouterProvider>
       </div>
     </UserContext.Provider>
