@@ -26,10 +26,10 @@ const SubHome = ({ album }) => {
     }
 
     const handleShareButton = () => {
-        if(!share){
+        if (!share) {
             toast("Successfully Shared");
         }
-        else{
+        else {
             toast("Removed Your Share");
         }
         setShare(!share);
