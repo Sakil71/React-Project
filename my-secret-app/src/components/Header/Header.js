@@ -29,7 +29,7 @@ const Header = () => {
                         open ? <FontAwesomeIcon className='text-xl' icon={faCircleXmark}></FontAwesomeIcon> :  <FontAwesomeIcon icon={faBarsProgress}></FontAwesomeIcon>
                     }
                 </div>
-                <ul className={`absolute md:static font-medium flex flex-col md:flex-row text-left md:items-center gap-5 duration-1000 bg-blue-950 md:bg-transparent px-4 pt-10 md:px-0 md:pt-0 min-h-screen md:min-h-0 z-50 ${open ? 'left-0 top-16 ' : 'left-[-150px] top-16'}`}>
+                <ul className={`absolute md:static font-medium flex flex-col md:flex-row text-left md:items-center gap-5 duration-1000 bg-blue-950 md:bg-transparent px-4 pt-10 md:px-0 md:pt-0 min-h-screen md:min-h-0 z-50 ${open ? 'left-0 top-16 ' : 'left-[-200px] top-16'}`}>
 
                     <li><Link className={`border px-4 py-1 bg-transparent hover:bg-sky-800 rounded focus:border-red-900`} to='/'>Home</Link></li>
 

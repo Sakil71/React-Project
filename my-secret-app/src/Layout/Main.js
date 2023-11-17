@@ -6,7 +6,7 @@ const Main = () => {
     return (
         <div>
             <Header></Header>
-            <div className='w-[95%] mx-auto px-4'>
+            <div className='px-4 break-all'>
                 <Outlet></Outlet>
             </div>
         </div>

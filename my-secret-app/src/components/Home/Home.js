@@ -7,7 +7,7 @@ const Home = () => {
 
     return (
         <div>
-            <div className='flex justify-between'>
+            <div className='md:flex justify-between'>
                 <h1 className='text-2xl font-medium'>Welcome to my secret app</h1>
                 <h1>{user?.email}</h1>
             </div>
