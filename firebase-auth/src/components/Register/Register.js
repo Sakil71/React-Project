@@ -1,23 +1,20 @@
-import { GithubAuthProvider, GoogleAuthProvider, TwitterAuthProvider, createUserWithEmailAndPassword, getAuth, sendEmailVerification, signInWithPopup, updateProfile } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import app from '../../firebase/firebase.init';
-import { UserContext } from '../../App';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { AuthContext } from '../../contexts/UserContext';
 
-const auth = getAuth(app);
 
 const Register = () => {
-    const userData = useContext(UserContext);
-    const { user, setUser, mood } = userData;
+    const { user, mood, createUser, updateUserProfile, signInGoogle, signInTwitter, signInGithub, emailVerify } = useContext(AuthContext);
 
     const [userError, setUserError] = useState('');
     const [success, setSucces] = useState(false);
 
-    const googleProvider = new GoogleAuthProvider();
-    const gitHubProvider = new GithubAuthProvider();
-    const twitterProvider = new TwitterAuthProvider();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
+
 
     const handleForm = (event) => {
         event.preventDefault();
@@ -29,14 +26,14 @@ const Register = () => {
         setUserError('');
         setSucces(false);
 
-        createUserWithEmailAndPassword(auth, email, password)
+        createUser(email, password)
             .then(result => {
-                const user = result.user;
                 updateUsersInfo(name);
-                setUser(user);
                 setSucces(true);
 
-                sendEmailVerification(auth.currentUser)
+                navigate(from, {replace: true});
+
+                emailVerify()
                     .then(() => {
                         alert("Email Verification sent on your email. please check your inbox or spam folder");
                     })
@@ -49,44 +46,49 @@ const Register = () => {
 
     //Update user Info
     const updateUsersInfo = (name) => {
-        updateProfile(auth.currentUser, {
-            displayName: name
-        })
+        updateUserProfile(name)
             .then(() => {
                 setSucces(true);
             })
             .catch(err => {
-                setUserError(err);
-            })
-    }
-
-
-    //Common Sign In Method
-    const signInMethod = (provider) => {
-        signInWithPopup(auth, provider)
-            .then(result => {
-                const user = result.user;
-                setUser(user);
-                alert('Successfully Sign In With Google');
-            })
-            .catch(error => {
-                console.error(error);
+                setUserError(err.message);
             })
     }
 
     //Sign In With Google
     const signInWithGoogle = () => {
-        signInMethod(googleProvider);
+        signInGoogle()
+            .then(result => {
+                navigate(from, {replace: true});
+                alert('Successfully Sign In With Google');
+            })
+            .catch(error => {
+                setUserError(error.message);
+            })
     }
 
     //Sign In With Github
     const signInWithGithub = () => {
-        signInMethod(gitHubProvider);
+        signInGithub()
+            .then(result => {
+                navigate(from, {replace: true});
+                alert('Successfully Sign In With Github');
+            })
+            .catch(error => {
+                setUserError(error);
+            })
     }
 
     //sign In With Twitter
     const signInWithTwitter = () => {
-        signInMethod(twitterProvider);
+        signInTwitter()
+            .then(result => {
+                navigate(from, {replace: true});
+                alert('Successfully Sign In With Twitter');
+            })
+            .catch(error => {
+                setUserError(error);
+            })
     }
 
 
@@ -96,7 +98,7 @@ const Register = () => {
 
             <div>
                 {
-                    user.uid ? //if Condition
+                    user?.uid ? //if Condition
                         <>
                             <h1 className='font-medium text-green-800 mt-5'>Congrats!! Your registration successfull.</h1>
                             <div className='gap-4 items-center justify-center flex mt-5'>

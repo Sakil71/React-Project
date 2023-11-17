@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../App';
 import { Link, useLoaderData } from 'react-router-dom';
 import SubHome from '../SubHome/SubHome';
+import { AuthContext } from '../../contexts/UserContext';
 
 const Home = () => {
-    const { user, mood } = useContext(UserContext);
+    const { user, mood } = useContext(AuthContext);
     const albums = useLoaderData();
 
     return (
@@ -12,11 +12,11 @@ const Home = () => {
             <main>
 
                 {
-                    user.uid ?
+                    user?.uid ?
                         <div className='my-5 w-[96%] mx-auto'>
                             <h1 className='text-xl font-bold mb-5'>News Feed</h1>
                             {
-                                albums.photos.map(album => <SubHome
+                                albums?.photos.map(album => <SubHome
                                     key={album.id}
                                     album={album}>
                                 </SubHome>)

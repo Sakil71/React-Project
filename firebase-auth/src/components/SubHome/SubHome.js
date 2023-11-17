@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 
 const SubHome = ({ album }) => {
     const { url, title, description, id, user } = album;
+    
     const [like, setLike] = useState(false);
     const [commentBox, setCommentBox] = useState(false);
     const [comment, setComment] = useState('');
@@ -27,10 +28,10 @@ const SubHome = ({ album }) => {
 
     const handleShareButton = () => {
         if (!share) {
-            toast("Successfully Shared");
+            toast.success("Successfully Shared");
         }
         else {
-            toast("Removed Your Share");
+            toast.error("Removed Your Share");
         }
         setShare(!share);
     }

@@ -1,30 +1,25 @@
 import { faEnvelope, faHome, faMoon, faRemove, faSignOut, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getAuth, signOut } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import app from '../firebase/firebase.init';
-import { UserContext } from '../App';
-
-const auth = getAuth(app);
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/UserContext';
 
 const Header = () => {
-    const userData = useContext(UserContext);
-    const { user, setUser, mood, setMood } = userData;
+    const { user, mood, setMood, logOut } = useContext(AuthContext);
 
-    const { displayName, photoURL, email } = user;
     const [profileOpen, setprofileOpen] = useState(false);
+    const navigate = useNavigate();
 
     //Sign Out
     const handleSignOut = () => {
-        signOut(auth)
+        logOut()
             .then(() => {
-                setUser({});
                 setprofileOpen(false);
                 alert('Successfully Sign Out');
+                navigate('/signIn');
             })
             .catch((err) => {
-                setUser({});
+                console.log(err);
             })
     }
 
@@ -37,8 +32,10 @@ const Header = () => {
                     <div className='flex items-center gap-4'>
                         <Link className='hidden md:block text-xs border hover:bg-blue-700 px-4 py-2 rounded' to='/'>Home</Link>
 
+                        <Link className='hidden md:block text-xs border hover:bg-blue-700 px-4 py-2 rounded' to='/contacts'>Contacts</Link>
+
                         {
-                            !user.uid ?
+                            !user?.uid ?
 
                                 <Link to='/register' className='text-xs border hover:bg-blue-700 px-4 py-2 rounded' title='Register'>Register</Link>
 
@@ -47,7 +44,7 @@ const Header = () => {
                                 <>
                                     <button onClick={() => setprofileOpen(!profileOpen)} className='text-xl bg-blue-700 w-10 h-10 rounded-full' title='Profile'>
                                         {
-                                            user.photoURL ? //if Condition
+                                            user?.photoURL ? //if Condition
                                                 <img className='w-10 h-10 rounded-full' src={user.photoURL} alt="" />
                                                 : //else Condition
                                                 <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
@@ -65,19 +62,20 @@ const Header = () => {
 
                 <button onClick={() => setprofileOpen(false)} className='absolute top-2 shadow-xl right-2 border rounded-full h-4 w-4 flex justify-center items-center p-3 hover:bg-red-800 text-red-600 hover:text-white'><FontAwesomeIcon className='font-bold' icon={faRemove}></FontAwesomeIcon></button>
                 <div className='flex items-center gap-4 mt-2 mb-4'>
-                    <img className='w-16 h-16 rounded-full' title='User Image' src={photoURL} alt="" />
+                    <img className='w-16 h-16 rounded-full' title='User Image' src={user?.photoURL} alt="" />
                     <div>
-                        <h1 className='font-bold text-xl'>{displayName}</h1>
+                        <h1 className='font-bold text-xl'>{user?.displayName}</h1>
                     </div>
                 </div>
                 {
-                    user.email ?
-                        <h1><FontAwesomeIcon className='mr-1' icon={faEnvelope}></FontAwesomeIcon> {email}</h1>
+                    user?.email ?
+                        <h1><FontAwesomeIcon className='mr-1' icon={faEnvelope}></FontAwesomeIcon> {user?.email}</h1>
                         :
                         <h1 className='text-red-500 font-medium'>Email dosen't exist</h1>
                 }
 
                 <Link to='/' className='flex items-center text-xl text-left bg-blue-900 border w-full px-4 py-1 rounded-full mt-5 hover:bg-red-800 md:hidden' title='Sign Out'>
+
                     <span><FontAwesomeIcon icon={faHome}></FontAwesomeIcon></span>
                     <span className='ml-3 text-base font-medium'>Home</span>
                 </Link>
