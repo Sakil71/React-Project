@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDq8tZFxCj-z_7mgaV_O0sQj5XrMYQ_Fjw",
-  authDomain: "hotel-cox-d3f80.firebaseapp.com",
-  projectId: "hotel-cox-d3f80",
-  storageBucket: "hotel-cox-d3f80.appspot.com",
-  messagingSenderId: "1064758432902",
-  appId: "1:1064758432902:web:ff733cb2715fa6263bad07"
+  apiKey: "AIzaSyA7TiyFWOsqankBpPjzuVzElikuNZmH-eI",
+  authDomain: "hotel-cox-ee5e1.firebaseapp.com",
+  projectId: "hotel-cox-ee5e1",
+  storageBucket: "hotel-cox-ee5e1.appspot.com",
+  messagingSenderId: "20513527335",
+  appId: "1:20513527335:web:1ae7f333499eb8470ba002"
 };
 
 // Initialize Firebase
