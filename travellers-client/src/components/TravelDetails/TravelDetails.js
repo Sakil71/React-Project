@@ -19,8 +19,8 @@ const TravelDetails = () => {
             <div className='md:flex justify-center items-center gap-5 mt-[5%] pb-[10%]'>
                 <img className='md:w-[600px] md:h-[500px] rounded mb-4' src={images} alt="" />
                 <div>
-                    <h1 className='text-xl md:text-6xl font-bold'>{name}</h1>
-                    <p className='text-2xl font-bold opacity-90 text-rose-400 mb-4'>Location: {Location}</p>
+                    <h1 className='text-4xl md:text-6xl font-bold'>{name}</h1>
+                    <p className='text-xl md:text-2xl font-bold opacity-90 text-rose-400 mb-4'>Location: {Location}</p>
                     <p className='opacity-80 mb-10'>{details}</p>
 
                     <button className='py-2 w-1/2 border rounded bg-rose-900 hover:bg-rose-950' onClick={() => document.getElementById('my_modal_5').showModal()}>Book Now</button>
@@ -30,7 +30,7 @@ const TravelDetails = () => {
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
 
-            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+            <dialog id="my_modal_5" className="modal modal-middle w-[96%] mx-auto md:w-full">
 
                 <div className="modal-box text-slate-900">
                     <h3 className="font-bold text-lg flex items-center gap-2 mb-2"><SiYourtraveldottv className='text-rose-600' title='Travellers'></SiYourtraveldottv>{name}</h3>
