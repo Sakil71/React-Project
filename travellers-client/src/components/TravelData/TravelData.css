@@ -1,0 +1,8 @@
+.data-details:hover{
+    background: rgba(11, 4, 23, 0.7);
+}
+
+.data-details:hover h1{
+    bottom: 49%;
+    opacity: 100;
+}
