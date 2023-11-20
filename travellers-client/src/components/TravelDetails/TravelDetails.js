@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { SiYourtraveldottv } from 'react-icons/si';
 import { Link, useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const TravelDetails = () => {
+    const {user} = useContext(AuthContext);
+
     const detailsData = useLoaderData();
     const { name, images, details, Location } = detailsData;
     const [condition, setCondition] = useState(false);
 
     const handleCondition = event => {
         if (event.target.checked) {
-            setCondition(!condition);
+            setCondition(true);
+        }
+        else{
+            setCondition(false);
         }
     }
 
@@ -32,22 +38,22 @@ const TravelDetails = () => {
 
             <dialog id="my_modal_5" className="modal modal-middle w-[96%] mx-auto md:w-full">
 
-                <div className="modal-box text-slate-900">
+                <div className="modal-box text-slate-900 bg-slate-200">
                     <h3 className="font-bold text-lg flex items-center gap-2 mb-2"><SiYourtraveldottv className='text-rose-600' title='Travellers'></SiYourtraveldottv>{name}</h3>
-                    <input className='border border-rose-900 w-full py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="text" placeholder='Your name*' name="" id="" required />
+                    <input className='border border-rose-900 text-rose-400 md:text-slate-950 w-full py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="text" placeholder='Your name*' defaultValue={user?.displayName} name="" id="" required />
 
-                    <input className='border border-rose-900 w-full py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="number" placeholder='Your phone number*' name="" id="" />
+                    <input className='border border-rose-900 text-rose-400 md:text-slate-950 w-full py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="number" placeholder='Your phone number*' name="" id="" />
 
-                    <input className='border border-rose-900 w-full py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="number" placeholder='Your NID number*' name="" id="" required />
+                    <input className='border border-rose-900 text-rose-400 md:text-slate-950 w-full py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="number" placeholder='Your NID number*' name="" id="" required />
 
-                    <div className='flex gap-4'>
+                    <div className='flex gap-4 text-slate-900'>
                         <div className='w-full'>
                             <span>Stay From</span>
-                            <input className='border w-full border-rose-900 py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="date" name="" id="" required />
+                            <input className='border w-full border-rose-900 text-rose-400 md:text-slate-950 py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="date" name="" id="" required />
                         </div>
                         <div className='w-full'>
                             <span>To</span>
-                            <input className='border w-full border-rose-900 py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="date" name="" id="" required />
+                            <input className='border w-full border-rose-900 text-rose-400 md:text-slate-950 py-1 px-4 mb-2 outline-none rounded-lg font-medium' type="date" name="" id="" required />
                         </div>
                     </div>
 
